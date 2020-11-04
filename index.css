@@ -1,0 +1,22 @@
+body {
+  background:black;
+}
+p {
+  color: white;
+
+}
+.next-btn-none {
+  display: none;
+}
+
+.next-btn-active {
+  display: inline;
+}
+
+.last-word {
+  color: white;
+  margin: 5px;
+  border: 1px solid white;
+  padding: 5px;
+}
+

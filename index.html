@@ -4,12 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
   </head>
 
   <body>
-    HTML TEST
-    <button>버튼</button>
-    <button>버튼2</button>
-    <button>버튼3</button>
+    <div class="gugudan">
+      <p id="multiple">문제나오는곳</p>
+      <input
+        id="userAnswer"
+        type="text"
+        placeholder="Input number"
+        onChange
+        value
+      />
+      <button type="submit" onclick="inputValue()">submit</button>
+      <button type="submit" onclick="onReset()">reset</button>
+      <button
+        id="next-btn"
+        class="next-btn-none"
+        type="submit"
+        onclick="next()"
+      >
+        next
+      </button>
+      <p id="answer">정답나오는곳</p>
+    </div>
+    <div class="last-word">
+      <form action="" method="get" class="last-word">
+        <div class="last-word">
+          <label style="color: white" id="firstWord"
+            >끝말잇기: 처음단어 나오는곳</label
+          >
+        </div>
+        <div class="last-word">
+          <input
+            type="text"
+            name="name"
+            id="userword"
+            placeholder="next word"
+            onchange="onChange()"
+          />
+        </div>
+        <div class="last-word">
+          <input type="button" value="체크" onclick="pandan()" />
+          <input type="button" value="시작" onclick="start()" />
+        </div>
+      </form>
+    </div>
+    <div class="last-word">
+      <input type="text" name="name" id="snail"" placeholder="달팽이 숫자 입력"
+      />
+      <input type="button" value="나와라!" onclick="snailClick()" />
+    </div>
   </body>
+  <!-- <script src="./baseball.js"></script> -->
+  <!-- <script src="./test.js"></script> -->
+  <!-- <script src="./star.js"></script> -->
+  <!-- <script src="./gugudan.js"></script>
+  <script src="./lastword.js"></script> -->
+  <!-- <script src="./nemostar.js"></script> -->
+  <!-- <script src="./snailstar.js"></script>
+  <script src="./snailExtend.js"></script> -->
+  <!-- <script src="./pYpY.js"></script>
+  <script src="./kthNum.js"></script> -->
+  <!-- <script src="./y2016.js"></script> -->
+  <!-- <script src="./centerWord.js"></script> -->
+  <!-- <script src="./tripleReverse.js"></script> -->
+  <!-- <script src="./sameNumber.js"></script> -->
+  <!-- <script src="./divisor.js"></script> -->
+  <!-- <script src="./btwSum.js"></script> -->
+  <!-- <script src="./myselfString.js"></script> -->
+  <!-- <script src="./upperString.js"></script> -->
+  <script src="./checkString.js"></script>
+  <!-- <script src="./findingKim.js"></script> -->
+  <!-- <script src="./findingPrime.js"></script> -->
+  <!-- <script src="./watermelon.js"></script> -->
+  <!-- <script src="./changeToInt.js"></script> -->
+  <!-- <script src="./ceaserPassword.js"></script> -->
+  <!-- <script src="./ceaserPasswordExtends.js"></script> -->
 </html>
