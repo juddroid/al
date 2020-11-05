@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주도에 가는거야!</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="container-left">
+                <a href="">
+                    <div class="logo">
+                        <img src="https://heropcode.github.io/GitHub-Responsive/img/logo.svg" alt="GitHub Logo">
+                    </div>
+                </a>
+                <div class="menu">
+                    <a href=""><div class="menu-item">준비</div></a>
+                    <a href=""><div class="menu-item">일정</div></a>
+                    <a href=""><div class="menu-item">예산</div></a>
+                </div>
+                <div class="login">
+                    <form action="/login" method="GET">
+                        <input type="email" name="id">
+                        <input type="password" name="pw">
+                        <input type="submit" value="로그인">
+                        <input type="checkbox">
+                        <input type="file" multiple>
+                        <input type="reset" value="초기화">
+                    </form>
+
+                    <textarea rows="6" placeholder="explain"></textarea>
+
+                    <button onclick="doit()">CLICK!</button>
+
+                    <script>
+                        function doit() {
+                            alert('CLICK!!!!');
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+            <div>
+                <progress value="0.7">70 %</progress>
+            </div>
+            <div class="map">
+                <img src="./img/IMG_0049.jpg" alt="jeju_map">
+            </div>
+        </div>
+    </div>
+<!--     
+    <img class="sal" src="./img/IMG_0048.jpg" alt="click">
+    -->
+</body>
+</html>

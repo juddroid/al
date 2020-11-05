@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: yellowgreen;
+}
+
+.header {
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+}
+
+.container {
+    margin: auto;
+    background: orange;
+}
+
+.container-left {
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.logo {
+    margin-right: 15px;
+    padding-left: 15px;
+    float: left;
+}
+
+.logo img {
+    display: block;
+}
+
+.menu {
+    float: left;
+}
+
+.menu-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    padding: 8px 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    float: left;
+    line-height: 1;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 10px;
+
+}
+
+.menu-item:hover {
+    background: white;
+}
+
+.login {
+    float: left;
+}
+
+form {
+    margin: 10px;
+    padding-bottom: 10px;
+}
+
+.map {
+    margin: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}

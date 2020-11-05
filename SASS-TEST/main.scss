@@ -1,0 +1,8 @@
+.container {
+    $size: 100px;
+    .item {
+        width: $size * 2;
+        height: $size * 2;
+        background: tomato;
+    }
+}
