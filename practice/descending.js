@@ -13,7 +13,8 @@ function solution(n) {
   }
   console.log(result);
 
-  return parseInt(result);
+  // return parseInt(result);
+  return +result;
 }
 
 console.log(solution(n));
