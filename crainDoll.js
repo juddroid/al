@@ -56,3 +56,5 @@ function solution(board, moves) {
   var answer = check;
   return answer;
 }
+
+console.log(solution(board, moves));

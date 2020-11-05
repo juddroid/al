@@ -22,8 +22,7 @@ function reChk(str, idx) {
     inputPassword(num);
   } else {
     console.log('im upper. need to make lowercase');
-    let toggledStr = toggleStr(str, idx);
-    debugger;
+    toggleStr(str, idx);
     lowerChk(toggledStr, idx);
   }
 }
@@ -62,5 +61,4 @@ function inputPassword(num) {
   return newPass;
 }
 
-debugger;
 lowerChk(s, 2);
