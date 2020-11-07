@@ -68,7 +68,7 @@ console.log(
 
 let result = 0;
 
-if (pobi[1] - pobi[0] !== 1 || crong[1] - crong[0] !== 1) {
+if (pobi[1] - pobi[0] !== 1 || crong[1] - crong[0] !== 1 || pobi[0] < 1) {
   console.log('wierd page');
   result = -1;
 } else if (pobiMaxScore > crongMaxScore) {
