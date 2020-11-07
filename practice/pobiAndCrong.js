@@ -1,5 +1,5 @@
-const pobi = [131, 132];
-const crong = [211, 212];
+const pobi = [399, 400];
+const crong = [90, 91];
 
 // pobi score
 
@@ -13,25 +13,19 @@ console.log(pobiStr);
 let pobiScoreArr = [];
 
 for (let i = 0; i < pobiStr.length; i++) {
+  let tempPlus = 0;
+  let tempMulti = 1;
   for (let j = 0; j < pobiStr[i].length; j++) {
-    console.log(i, j);
-    pobiScoreArr.push(parseInt(pobiStr[i][j]) + parseInt(pobiStr[i][j + 1]));
-    pobiScoreArr.push(pobiStr[i][j] * pobiStr[i][j + 1]);
+    tempPlus += parseInt(pobiStr[i][j]);
+    tempMulti *= parseInt(pobiStr[i][j]);
   }
+  pobiScoreArr.push(tempPlus);
+  pobiScoreArr.push(tempMulti);
 }
 
 console.log(pobiScoreArr);
 
-let pobiOnlyScore = [];
-pobiScoreArr.forEach((e) => {
-  if (!isNaN(e)) {
-    pobiOnlyScore.push(e);
-  }
-});
-
-console.log(pobiOnlyScore);
-
-let pobiMaxScore = pobiOnlyScore.sort((a, b) => a - b).reverse()[0];
+let pobiMaxScore = pobiScoreArr.sort((a, b) => a - b).reverse()[0];
 
 console.log(pobiMaxScore);
 
@@ -47,35 +41,41 @@ console.log(crongStr);
 let crongScoreArr = [];
 
 for (let i = 0; i < crongStr.length; i++) {
+  let tempPlus = 0;
+  let tempMulti = 1;
   for (let j = 0; j < crongStr[i].length; j++) {
-    console.log(i, j);
-    crongScoreArr.push(parseInt(crongStr[i][j]) + parseInt(crongStr[i][j + 1]));
-    crongScoreArr.push(crongStr[i][j] * crongStr[i][j + 1]);
+    tempPlus += parseInt(crongStr[i][j]);
+    tempMulti *= parseInt(crongStr[i][j]);
   }
+  crongScoreArr.push(tempPlus);
+  crongScoreArr.push(tempMulti);
 }
 
 console.log(crongScoreArr);
 
-let crongOnlyScore = [];
-crongScoreArr.forEach((e) => {
-  if (!isNaN(e)) {
-    crongOnlyScore.push(e);
-  }
-});
-
-console.log(crongOnlyScore);
-
-let crongMaxScore = crongOnlyScore.sort((a, b) => a - b).reverse()[0];
+let crongMaxScore = crongScoreArr.sort((a, b) => a - b).reverse()[0];
 
 console.log(crongMaxScore);
 
 // 점수비교
-console.log(pobiMaxScore, crongMaxScore);
+console.log(
+  '[pobi Score:',
+  pobiMaxScore,
+  '], ' + '[crong Score:',
+  crongMaxScore,
+  ']'
+);
 
 let result = 0;
-if (pobiMaxScore > crongMaxScore) {
+
+if (pobi[1] - pobi[0] !== 1 || crong[1] - crong[0] !== 1) {
+  console.log('wierd page');
+  result = -1;
+} else if (pobiMaxScore > crongMaxScore) {
+  console.log('pobi Win');
   result = 1;
 } else if (pobiMaxScore < crongMaxScore) {
+  console.log('crong Win');
   result = 2;
 } else if (pobiMaxScore === crongMaxScore) {
   result = 0;
