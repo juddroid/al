@@ -1,4 +1,4 @@
-const n = 13;
+const n = 100;
 
 // 1, 2, 4
 // 몫 / 나머지 리스트
@@ -28,29 +28,48 @@ const n = 13;
 
 // 십진수를 3으로 나눈 나머지를, 십진수에서 뺀 후에, 3으로 나눠서 몫을 봐야겠다.
 
-let nationNum = 0;
-let num = 0;
-let extra = 0;
+// 3으로 나눈 나머지가 0이면 +3
+// 3으로 나눈 나머지가 2이면 +2
+// 3으로 나눈 나머지가 1이면 +1
+// 몫은 각 나머지를 뺀 수를 나누자
 
-if (n === 1) {
-  nationNum = 1;
-} else if (n === 2) {
-  nationNum = 2;
-} else if (n === 3) {
-  nationNum = 4;
-} else {
-  extra = n % 3;
-  if (extra === 0) {
-    extra = 3;
+function solution(n) {
+  // 나머지
+
+  let extraNum;
+  function extra(num) {
+    if (num % 3 === 0) {
+      extraNum = 3;
+    } else {
+      extraNum = num % 3;
+    }
   }
-  num = parseInt((n - extra) / 3);
-  if (extra === 3) {
-    extra = 4;
+
+  // 몫
+  let quotientNum;
+  function quotient(num) {
+    quotientNum = parseInt((num - extraNum) / 3);
   }
-  if (num === 3) {
-    num = 4;
+
+  // 124 숫자로 만들기
+  extra(n);
+  quotient(n);
+
+  if (extraNum === 3) {
+    extraNum = 4;
   }
-  nationNum = parseInt(num.toString() + extra.toString());
+  if (quotientNum > 3) {
+    quotientNum = solution(quotientNum);
+  }
+  if (quotientNum === 3) {
+    quotientNum = 4;
+  }
+
+  let nationNum = parseInt(quotientNum.toString() + extraNum.toString());
+
+  return nationNum.toString();
 }
 
-console.log(nationNum);
+// for (let i = 1; i < n + 1; i++) {
+//   console.log('n: ' + `${i}`, solution(i));
+// }
