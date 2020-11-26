@@ -1,27 +1,29 @@
 //baseball
 
 function ranNums() {
-  let rnd = Math.random();
-  console.log(rnd);
-  return Math.floor(rnd * (9 - 0) + 1);
-
-  const ranNum = Math.floor(Math.random() * 10);
-  if (ranNum !== 0) {
-    return ranNum;
-  } else {
-    console.log('0 아님!!!');
-    let num = ranNums();
-    console.log(num);
-    return num;
-  }
+  let rnd = Math.floor(Math.random() * (9 - 0) + 0);
+  return rnd;
 }
 
-function createBaseball() {
-  const nums = [];
-  for (let i = 0; nums.length < 3; i++) {
-    if (nums[i] !== 0) {
-      nums.push(ranNums());
-    }
+function ranNumsPick() {
+  let tempNum = [];
+  while (tempNum.length !== 3) {
+    tempNum.push(ranNums());
   }
-  return nums;
+  return removeSameNumber(tempNum);
+}
+
+// 중복제거
+function removeSameNumber(arr) {
+  if (
+    arr[0] === arr[1] ||
+    arr[0] === arr[2] ||
+    arr[0] === arr[2] ||
+    arr[1] === arr[2]
+  ) {
+    console.log('same');
+    console.log(arr);
+    return ranNumsPick();
+  }
+  return arr;
 }
