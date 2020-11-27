@@ -163,11 +163,12 @@ function pushNum(arr) {
   fireGame();
 }
 
-const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+let randomColor = '';
 const randomBackground = () => {
-  document.querySelector('#number_box_1').style.backgroundColor = randomColor;
-  document.querySelector('#number_box_2').style.backgroundColor = randomColor;
-  document.querySelector('#number_box_3').style.backgroundColor = randomColor;
+  randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+  $box1.style.backgroundColor = randomColor;
+  $box2.style.backgroundColor = randomColor;
+  $box3.style.backgroundColor = randomColor;
 };
 
 function inningColorBox() {
