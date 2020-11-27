@@ -5,25 +5,249 @@
       body {
         background: black;
       }
-      .titlebox {
+      .title_box {
         background: #202020;
         width: 600px;
         height: 100px;
         text-align: center;
         justify-content: center;
+        align-items: center;
         color: white;
         display: flex;
         border: 1px solid white;
+        margin: 10px;
       }
-    </style>
+      .head_box {
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        border: 1px solid white;
+        width: 600px;
+        display: inline-flex
+      }
+
+      .number_box {
+        background: black;
+        width: 130px;
+        height: 140px;
+        margin: 4px;
+        border: 1px solid white;
+        display: inline-flex;
+        font-size: 60px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        color: white;
+      }
+      .box_btn {
+        width: 130px;
+        height: 140px;
+        margin: 4px;
+        background: gray;
+        font-size: 24px;
+        display: inline-flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid white;
+        display: inline-block;
+      }
+      .button_box {
+        align-items: center;
+        justify-content: center;
+        display: inline-block;
+        
+      }
+      .check_box {
+        background: lightgray;
+        width: 125px;
+        height: 140px;
+        margin: 4px;
+        border: 1px solid white;
+        display: inline-flex;
+        font-size: 40px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+      }
+      .count_box {
+        background:black;
+        width: 600px;
+        height: 800px;
+        margin: 10px;
+        justify-content: center; 
+        
+        border: 1px solid white
+      }
+      .middle_box {
+        width: 600px;
+        height: 75px;
+        justify-content: center;
+        align-items: center;
+        display: inline-flex;
+      }
+      .inning_box {
+        width: 100px;
+        height: 50px;
+        background: gray;
+        margin: 5px;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border: 1px solid white;
+      }
+      .score_box {
+        width: 100px;
+        height: 50px;
+        margin: 5px;
+        display: inline-flex;
+        background: black;
+        border: 1px solid white;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+      .middle_box .inning_score {
+        background: gray;
+        color: white;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+        border: 1px solid white
+      }
+      
+      #start_btn {
+        color: white;
+        display: inline-flex;
+        position: relative;
+      }
+      #check_btn {
+        position: relative;
+        background: tomato;
+        color: white;
+        display: inline-flex;
+      }
+      #result_box {
+        border: 1px solid white;
+        margin: 5px;
+        width: 580px;
+        padding: 5px;
+        color: white;
+        font-size: 24px;
+        text-align: center;
+      }
+    
+     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
   <body>
-    <div class="titlebox">
+    <div class="title_box">
       <h1>Baseball Game!!!</h1>
     </div>
+    <div class="head_box">
+      <div class="number_box" id="number_box_1"></div>
+      <div class="number_box" id="number_box_2"></div>
+      <div class="number_box" id="number_box_3"></div>
+      
+        <input
+          type="button"
+          class="box_btn"
+          id="start_btn"
+          value="START"
+          onclick="ranNums()"
+        />
+      
+    </div>
+    <div class="head_box">
+      <input class="check_box" id="check_box_1" maxlength="1" onkeyup="autoTab($check1, $check2)"></input>
+      <input class="check_box" id="check_box_2" maxlength="1" onkeyup="autoTab($check2, $check3)"></input>
+      <input class="check_box" id="check_box_3" maxlength="1" onkeyup="autoTab($check3, $checkButton)"></input>
+      
+        <input
+          type="submit"
+          class="box_btn"
+          id="check_btn"
+          value="CHECK"
+          onclick="checkNum()"
+        />
+      </div>
+      <div class="count_box">
+        <div class="middle_box" id="middle1">
+          <div class="inning_box">1회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning1"></div>
+        </div>
+        <div class="middle_box" id="middle2">
+          <div class="inning_box">2회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning2"></div>
+        </div>
+        <div class="middle_box" id="middle3">
+          <div class="inning_box">3회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning3"></div>
+        </div>
+        <div class="middle_box" id="middle4">
+          <div class="inning_box">4회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning4"></div>
+        </div>
+        <div class="middle_box" id="middle5">
+          <div class="inning_box">5회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning5"></div>
+        </div>
+        <div class="middle_box" id="middle6">
+          <div class="inning_box">6회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning6"></div>
+        </div>
+        <div class="middle_box" id="middle7">
+          <div class="inning_box">7회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning7"></div>
+        </div>
+        <div class="middle_box" id="middle8">
+          <div class="inning_box">8회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning8"></div>
+        </div>
+        <div class="middle_box" id="middle9">
+          <div class="inning_box">9회</div>
+          <div class="score_box box1"></div>
+          <div class="score_box box2"></div>
+          <div class="score_box box3"></div>
+          <div class="score_box inning_score" id="inning9"></div>
+        </div>
+        <div class="middle_box" id="result_box">
+          
+        </div>
+      </div>
+    
   </body>
   <script src="./baseball.js"></script>
 </html>
