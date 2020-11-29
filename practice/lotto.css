@@ -24,7 +24,8 @@ body {
 .circle_box {
   width: 60px;
   height: 60px;
-  color: white;
+  color: black;
+  font-weight: 800;
   font-size: 36px;
   border: 1px solid white;
   border-radius: 45px;
