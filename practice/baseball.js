@@ -1,3 +1,23 @@
+// 야구게임
+// 입력 받기
+// 체크 하기
+// 게임 생성
+// 결과 반환
+
+function BaseBall() {
+  this.game = [];
+}
+
+BaseBall.prototype = {
+  initGame: function () {
+    this.game;
+  },
+  getRandomGame: function () {},
+};
+
+let game = new BaseBall();
+game.initGame();
+
 //baseball
 document.getElementById('start_btn');
 
@@ -54,6 +74,9 @@ function moveFocus(next) {
 
 /** user number check **/
 
+// win이거나 lose인데, check할 때,
+const alreadyDone = () => inning === 10;
+
 // 스타트 없이 체크 할 때,
 const noStartCheck = () => gameNums.length === 0;
 // 스타트 했지만 빈 상태로 체크 할 때,
@@ -81,6 +104,8 @@ function checkNum() {
   if (noStartCheck()) {
     alert('START를 해라');
     $check1.focus();
+  } else if (alreadyDone()) {
+    alert('끝났잖아!\n다시 START해라');
   } else if (startButEmptyCheck(checkArr)) {
     alert('3개 다 입력을 해라!');
     let indexSet = { 0: $check1, 1: $check2, 2: $check3 };
@@ -129,6 +154,7 @@ function inningScore(arr) {
     result = 'FINISH!';
     pushNum(arr);
     resultBox.innerText = 'You Win! \n Start New Game!';
+    inning = 10;
   } else if (arr[0] === 0 && arr[1] === 0) {
     result = '3 OUT';
     pushNum(arr);
