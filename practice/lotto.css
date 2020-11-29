@@ -1,0 +1,77 @@
+body {
+  background: black;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  display: inline-flexbox
+}
+
+.basic_box {
+  width: device-width;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title_box {
+  height: 100px;
+  display: flex;
+}
+
+.circle_box {
+  width: 60px;
+  height: 60px;
+  color: white;
+  font-size: 36px;
+  border: 1px solid white;
+  border-radius: 45px;
+  margin: 5px;
+  text-align: center;
+  align-items: center;
+  position: relative;
+}
+
+
+.title_box .circle_box {
+  font-size: 40px;
+}
+
+.title_box .random_circle_box {
+  width: 60px;
+  height: 60px;
+  color: white;
+  font-size: 40px;
+  border: 1px solid white;
+  border-radius: 45px;
+  margin: 5px;
+  text-align: center;
+  
+}
+
+.view_box {
+  
+}
+
+.button_box {
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+  font-size: 24px;
+  background:black;
+  color:white;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+.button_box:hover {
+  color: red;
+  transition: 0.4s;
+}
+
+.button_box:active {
+  color: white;
+  background: red
+}
