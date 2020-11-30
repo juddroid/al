@@ -45,12 +45,6 @@ body {
   justify-content: center;
   display: flex;
 }
-.add_none_circle_box {
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  display: none;
-}
 
 
 .title_box .circle_box {
@@ -68,10 +62,12 @@ body {
   text-align: center;
   
 }
-
-.view_box {
-  
+.input_box .circle_box {
+  width: 55px;
+  height: 55px;
+  background: lightgray;
 }
+
 
 .button_box {
   width: 100px;

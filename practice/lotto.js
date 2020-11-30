@@ -7,33 +7,31 @@
 
 // 번호 한세트 추출
 let lottoSet = [];
+const fixNumber = { length: 6, lottoLength: 45 };
 
 function pickNumber() {
-  const randomNumber = () => Math.floor(Math.random() * (45 - 0) + 1);
-
+  const randomNumber = () =>
+    Math.floor(Math.random() * (fixNumber['lottoLength'] - 0) + 1);
+  const checkNumber = (arr, num) => arr.includes(num);
+  const pushNumber = (arr, num) => arr.push(num);
+  const sortNumber = (arr) => arr.sort((a, b) => a - b);
   let tempArr = [];
-  while (tempArr.length !== 6) {
+  while (tempArr.length !== fixNumber['length']) {
     let randomNum = randomNumber();
-    if (checkNumber(tempArr, randomNum)) {
-      continue;
+    if (!checkNumber(tempArr, randomNum)) {
+      pushNumber(tempArr, randomNum);
     }
-    pushNumber(tempArr, randomNum);
   }
   sortNumber(tempArr);
   lottoSet = tempArr;
 }
-
-const checkNumber = (arr, num) => arr.includes(num);
-const pushNumber = (arr, num) => arr.push(num);
-const sortNumber = (arr) => arr.sort((a, b) => a - b);
-
-// 타이틀 만들기
 
 // 엘리먼트 만들기
 const titleText = 'LOTTOWORLD';
 function createCircleBox(title, i) {
   let createDiv = document.createElement('div');
   createDiv.className = 'circle_box';
+  createDiv.style.type = 'text';
   document.querySelector('.title_box').append(createDiv);
   createDiv.innerText = title[i];
 }
@@ -45,16 +43,36 @@ function getTitle() {
     createCircleBox(splitTitle, i);
   }
 }
+
+// circle 6개 만들기
+function createCircle() {
+  for (let i = 0; i < fixNumber['length']; i++) {
+    let tempDiv = document.createElement('input');
+    tempDiv.className = 'circle_box';
+    $inputBox.append(tempDiv);
+  }
+}
+
 getTitle();
 
-// 타이틀 색상관련
 let $titleCircleBox = document.querySelectorAll('.title_box .circle_box');
 let $randomCircleBox = document.getElementsByClassName('random_circle_box');
 let $numberBox = document.querySelector('.view_box');
-let $createButton = document.getElementById('createButton');
+let $plusFiveButton = document.getElementById('plusFiveButton');
+let $increaseButton = document.getElementById('increaseButton');
+let $decreaseButton = document.getElementById('decreaseButton');
 let $resetButton = document.getElementById('resetButton');
 let $viewNumber = document.querySelectorAll('.view_box > .circle_box');
+let $inputBox = document.querySelector('.input_box');
+let $addBox = document.querySelector('.add_box');
 let $addNumber;
+let $addedViewBox = document.getElementsByClassName('add_view_circle_box');
+
+createCircle();
+controlFocus();
+function controlFocus() {
+  $inputBox.getElementsByClassName('circle_box')[0].focus();
+}
 
 // 랜던색상추출
 const randomColor = () =>
@@ -85,20 +103,18 @@ const changeRandomColor = (box) => {
 // 번호 보여주기
 // 여기 for... in 으로 어떠케 하는거지
 let count = 0;
-const counter = () => count++;
-const checkCounter = () => {
-  if (count !== 0) {
-    displayToggle($addNumber);
-  }
-};
+// const checkCounter = () => {
+//   if (count !== 0) {
+//     displayToggle($addNumber);
+//   }
+// };
 
 function viewNumber() {
   pickNumber();
   controlColor($viewNumber);
   controlNumber($viewNumber);
-  checkCounter();
-  addNumber();
-  counter();
+  getBottomBox();
+  count++;
 }
 
 function controlNumber(num) {
@@ -110,25 +126,32 @@ function controlNumber(num) {
 function addBox() {
   let tempBox;
   tempBox = document.createElement('div');
-  tempBox.className = 'add_none_circle_box';
-  document.querySelector('.add_box').append(tempBox);
+  tempBox.className = 'add_view_circle_box';
+  $addBox.append(tempBox);
 }
 
 function addNumber() {
-  addBox();
   let tempArr = [];
-  for (let i = 0; i < lottoSet.length; i++) {
+  for (let i = 0; i < fixNumber['length']; i++) {
     let tempDiv = document.createElement('div');
     tempDiv.className = 'circle_box';
-    document.querySelector('.add_box > .add_none_circle_box').append(tempDiv);
+
+    $addBox
+      .getElementsByClassName('add_view_circle_box')
+      [count].append(tempDiv);
     tempDiv.innerText = lottoSet[i];
     tempArr.push(tempDiv);
   }
   controlColor(tempArr);
-  $addNumber = document.querySelector('.add_box > .add_none_circle_box');
+  $addNumber = $addBox.querySelector('.add_view_circle_box');
 }
 
-const displayToggle = (num) => (num.className = 'add_view_circle_box');
+function getBottomBox() {
+  addBox();
+  addNumber();
+}
+
+// const displayToggle = (num) => (num.className = 'add_view_circle_box');
 
 function getColorCode(num) {
   const colorSet = {
@@ -149,11 +172,17 @@ const controlColor = (arr) => {
   }
 };
 
-let $addBox = document.getElementsByClassName('add_view_circle_box');
-
-const removeBox = (box) => {
-  for (let i = 0; i < box.length; i++) {
-    box[i].remove();
+const removeBox = (box) => box[0].remove();
+const removeOneBox = () => {
+  if (count !== 0) {
+    $addedViewBox[0].remove();
+    count--;
+  }
+};
+const removeAllBox = (box) => {
+  while (box.length !== 0) {
+    removeBox(box);
+    box.length--;
   }
 };
 
@@ -164,24 +193,32 @@ function reset() {
     $viewNum.style.backgroundColor = '';
   }
   changeBoxColor($titleCircleBox, $randomCircleBox);
-  removeBox($addBox);
+  removeAllBox($addedViewBox);
 }
 
-$createButton.addEventListener('click', viewNumber);
+function fiveGames() {
+  for (let i = 0; i < 5; i++) {
+    viewNumber();
+  }
+}
+
+$plusFiveButton.addEventListener('click', fiveGames);
+$increaseButton.addEventListener('click', viewNumber);
+$decreaseButton.addEventListener('click', removeOneBox);
 $resetButton.addEventListener('click', reset);
 
 changeBoxColor($titleCircleBox, $randomCircleBox);
 
 // 앞으로...
-// 번호 구간에 따라 색상 변경 (display: none)으로 해보자.
+// 번호 구간에 따라 색상 변경 (display: none)으로 해보자. check
 // 1 - 10: 노랑
 // 11 - 20: 하늘색
 // 21 -30: 빨강
 // 31 - 40: 회색
 // 41 - 45: 녹색
 // 5세트 뽑기
-// 리셋버튼
-// 뽑은 번호, 일정 구간 보여주기, 아래에 배치
+// 리셋버튼 check
+// 뽑은 번호, 일정 구간 보여주기, 아래에 배치 check
 // 몇가지 조건 추가해보기(연속 된 숫자, 구간별 숫자 개수)
 // API연동해서 지난 주 번호와 겹치지 않게 하기.. 이건 시간이 걸릴듯
 // 숫자 입력 받아서 지금까지 당첨된 번호 있는지 보기
