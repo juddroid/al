@@ -7,7 +7,10 @@
 
 // 번호 한세트 추출
 let lottoSet = [];
+
 function pickNumber() {
+  const randomNumber = () => Math.floor(Math.random() * (45 - 0) + 1);
+
   let tempArr = [];
   while (tempArr.length !== 6) {
     let randomNum = randomNumber();
@@ -19,7 +22,7 @@ function pickNumber() {
   sortNumber(tempArr);
   lottoSet = tempArr;
 }
-const randomNumber = () => Math.floor(Math.random() * (45 - 0) + 1);
+
 const checkNumber = (arr, num) => arr.includes(num);
 const pushNumber = (arr, num) => arr.push(num);
 const sortNumber = (arr) => arr.sort((a, b) => a - b);
@@ -51,6 +54,7 @@ let $numberBox = document.querySelector('.view_box');
 let $createButton = document.getElementById('createButton');
 let $resetButton = document.getElementById('resetButton');
 let $viewNumber = document.querySelectorAll('.view_box > .circle_box');
+let $addNumber;
 
 // 랜던색상추출
 const randomColor = () =>
@@ -82,65 +86,88 @@ const changeRandomColor = (box) => {
 // 여기 for... in 으로 어떠케 하는거지
 let count = 0;
 const counter = () => count++;
-
-const checkCount = () => {
-  if (count === 0) {
-    viewNumber();
-  } else {
-    viewNumber();
-    addNumber();
+const checkCounter = () => {
+  if (count !== 0) {
+    displayToggle($addNumber);
   }
 };
 
 function viewNumber() {
-  counter();
   pickNumber();
-  controlColor();
-  for (let i = 0; i < $viewNumber.length; i++) {
-    $viewNumber[i].innerText = lottoSet[i];
+  controlColor($viewNumber);
+  controlNumber($viewNumber);
+  checkCounter();
+  addNumber();
+  counter();
+}
+
+function controlNumber(num) {
+  for (let i = 0; i < num.length; i++) {
+    num[i].innerText = lottoSet[i];
   }
 }
 
-function addNumber() {
-  let createDiv = document.createElement('div');
-  createDiv.className = 'circle_box';
-  document.querySelector('.add_box').append(createDiv);
-  createDiv.innerText = '';
+function addBox() {
+  let tempBox;
+  tempBox = document.createElement('div');
+  tempBox.className = 'add_none_circle_box';
+  document.querySelector('.add_box').append(tempBox);
 }
 
-const colorSet = {
-  1: 'yellow',
-  2: 'skyblue',
-  3: 'red',
-  4: 'gray',
-  5: 'yellowgreen',
-};
-const controlColor = () => {
+function addNumber() {
+  addBox();
+  let tempArr = [];
   for (let i = 0; i < lottoSet.length; i++) {
-    if (lottoSet[i] <= 10) {
-      $viewNumber[i].style.backgroundColor = colorSet[1];
-    } else if (lottoSet[i] <= 21) {
-      $viewNumber[i].style.backgroundColor = colorSet[2];
-    } else if (lottoSet[i] <= 31) {
-      $viewNumber[i].style.backgroundColor = colorSet[3];
-    } else if (lottoSet[i] <= 41) {
-      $viewNumber[i].style.backgroundColor = colorSet[4];
-    } else {
-      $viewNumber[i].style.backgroundColor = colorSet[5];
-    }
+    let tempDiv = document.createElement('div');
+    tempDiv.className = 'circle_box';
+    document.querySelector('.add_box > .add_none_circle_box').append(tempDiv);
+    tempDiv.innerText = lottoSet[i];
+    tempArr.push(tempDiv);
+  }
+  controlColor(tempArr);
+  $addNumber = document.querySelector('.add_box > .add_none_circle_box');
+}
+
+const displayToggle = (num) => (num.className = 'add_view_circle_box');
+
+function getColorCode(num) {
+  const colorSet = {
+    1: 'yellow',
+    2: 'skyblue',
+    3: 'red',
+    4: 'gray',
+    5: 'yellowgreen',
+  };
+
+  let colorIndex = parseInt(num / 10) + 1;
+  return colorSet[colorIndex];
+}
+
+const controlColor = (arr) => {
+  for (let i = 0; i < lottoSet.length; i++) {
+    arr[i].style.backgroundColor = getColorCode(lottoSet[i]);
+  }
+};
+
+let $addBox = document.getElementsByClassName('add_view_circle_box');
+
+const removeBox = (box) => {
+  for (let i = 0; i < box.length; i++) {
+    box[i].remove();
   }
 };
 
 function reset() {
   count = 0;
-  for (let i = 0; i < $viewNumber.length; i++) {
-    $viewNumber[i].innerText = '';
-    $viewNumber[i].style.backgroundColor = '';
+  for (let $viewNum of $viewNumber) {
+    $viewNum.innerText = '';
+    $viewNum.style.backgroundColor = '';
   }
   changeBoxColor($titleCircleBox, $randomCircleBox);
+  removeBox($addBox);
 }
 
-$createButton.addEventListener('click', checkCount);
+$createButton.addEventListener('click', viewNumber);
 $resetButton.addEventListener('click', reset);
 
 changeBoxColor($titleCircleBox, $randomCircleBox);

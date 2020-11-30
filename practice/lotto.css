@@ -21,6 +21,10 @@ body {
   display: flex;
 }
 
+.add_box {
+  display: block;
+}
+
 .circle_box {
   width: 60px;
   height: 60px;
@@ -33,6 +37,19 @@ body {
   text-align: center;
   align-items: center;
   position: relative;
+}
+
+.add_view_circle_box {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.add_none_circle_box {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: none;
 }
 
 
