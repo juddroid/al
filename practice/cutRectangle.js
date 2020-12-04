@@ -1,25 +1,64 @@
 const w = 8;
 const h = 12;
 
-function solution(w, h) {
-  const smaller = (a, b) => (a > b ? b : a);
-  const bigger = (a, b) => (a > b ? a : b);
-  let allRec = w * h;
-  let uselessRec;
-  let devider = parseInt(bigger(w, h) / smaller(w, h));
-  if (w === 1 || h === 1) {
-    usefulRec = 0;
-  } else if (w === h) {
-    uselessRec = w;
-  } else if (w % 2 === 0 && h % 2 === 0) {
-    uselessRec = smaller(w, h) * devider;
-  } else if (w % 2 === 1 && h % 2 === 1) {
-    uselessRec = smaller(w, h) * (devider + 1);
-  } else if ((w % 2 === 0 && h % 2 === 1) || (w % 2 === 1 && h % 2 === 0)) {
-    console.log('test');
-  }
-  let usefulRec = allRec - uselessRec;
-  result = usefulRec;
+// function solution(w, h) {
+//   let angle = h / w;
+//   let generalFn = (x) => angle * x;
 
+//   let rectangle = 0;
+
+//   const transFn = function (num) {
+//     let floorNum = generalFn(num);
+//     let string = floorNum.toString();
+//     let toNum;
+//     if (string.includes('.')) {
+//       toNum = Number(string.slice(0, string.indexOf('.')));
+//     } else {
+//       toNum = floorNum;
+//     }
+//     return toNum;
+//   };
+
+//   for (let i = 0; i < w; i++) {
+//     if (generalFn(i) >= transFn(i)) {
+//       rectangle += transFn(i);
+//     }
+//   }
+
+//   let result = rectangle * 2;
+//   return result;
+// }
+
+function solution(w, h) {
+  // const fixAngle = function (a) {
+  //   let stringFloat = a.toString();
+  //   let fixFloat = '';
+  //   if (stringFloat.includes('.')) {
+  //     fixFloat =
+  //       stringFloat.slice(0, stringFloat.indexOf('.')) +
+  //       stringFloat.slice(
+  //         stringFloat.indexOf('.'),
+  //         stringFloat.indexOf('.') + 6
+  //       );
+  //   } else {
+  //     fixFloat = stringFloat;
+  //   }
+  //   let fixedNumber = Number(fixFloat);
+
+  //   return fixedNumber;
+  // };
+  let angle = (1000 * h) / w;
+  let generalFn = (x) => (angle * x) / 1000;
+
+  let rectangle = 0;
+
+  for (let i = 0; i < w; i++) {
+    if (generalFn(i) >= Math.floor(generalFn(i))) {
+      rectangle += Math.floor(generalFn(i));
+    }
+    console.log(i, rectangle);
+  }
+
+  let result = rectangle * 2;
   return result;
 }
