@@ -6,7 +6,7 @@ export async function getUsers() {
 }
 
 export async function getUser(id) {
-  console.log('test4');
+  console.log('test5');
   const response = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
   return response.data;
 }
